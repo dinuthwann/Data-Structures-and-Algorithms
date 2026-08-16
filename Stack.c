@@ -1,7 +1,17 @@
 #include<stdio.h>
+#define MAX 100
+
+int st[MAX];
+int top = -1;
+
+void push(int st[], int val);
+int pop(int st[]);
+int peek(int st[]);
+void display(int st[]);
+
 int main(int argc,char *argv[]){
     int val,option;
-    int st[100];
+
     do{
         printf("\n ** Main menu **");
         printf("\n 1. PUSH");
@@ -36,4 +46,43 @@ int main(int argc,char *argv[]){
     }while(option != 5);
     return 0;
 
+}
+void push(int st[], int val) {
+    if (top == MAX - 1) {
+        printf("\n OVERFLOW: Stack is full!");
+    } else {
+        top++;
+        st[top] = val;
+        printf("\n Successfully pushed %d", val);
+    }
+}
+int pop(int st[]) {
+    int val;
+    if (top == -1) {
+        printf("\n UNDERFLOW: Stack is empty!");
+        return -1;
+    } else {
+        val = st[top];
+        top--;
+        return val;
+    }
+}
+int peek(int st[]) {
+    if (top == -1) {
+        printf("\n Stack is empty!");
+        return -1;
+    } else {
+        return st[top];
+    }
+}
+void display(int st[]) {
+    int i;
+    if (top == -1) {
+        printf("\n Stack is empty!");
+    } else {
+        printf("\n Stack elements are:\n");
+        for (i = top; i >= 0; i--) {
+            printf(" %d\n", st[i]);
+        }
+    }
 }
