@@ -8,6 +8,8 @@ void push(int st[], int val);
 int pop(int st[]);
 int peek(int st[]);
 void display(int st[]);
+int isEmpty(); 
+int isFull();  
 
 int main(int argc,char *argv[]){
     int val,option;
@@ -47,8 +49,24 @@ int main(int argc,char *argv[]){
     return 0;
 
 }
-void push(int st[], int val) {
+
+int isEmpty() {
+    if (top == -1) {
+        return 1; // True 
+    } else {
+        return 0; // False
+    }
+}
+int isFull() {
     if (top == MAX - 1) {
+        return 1; // True 
+    } else {
+        return 0; // False
+    }
+}
+
+void push(int st[], int val) {
+    if (isFull()) {
         printf("\n OVERFLOW: Stack is full!");
     } else {
         top++;
@@ -58,7 +76,7 @@ void push(int st[], int val) {
 }
 int pop(int st[]) {
     int val;
-    if (top == -1) {
+    if (isEmpty()) {
         printf("\n UNDERFLOW: Stack is empty!");
         return -1;
     } else {
@@ -68,7 +86,7 @@ int pop(int st[]) {
     }
 }
 int peek(int st[]) {
-    if (top == -1) {
+    if (isEmpty()) {
         printf("\n Stack is empty!");
         return -1;
     } else {
@@ -77,7 +95,7 @@ int peek(int st[]) {
 }
 void display(int st[]) {
     int i;
-    if (top == -1) {
+    if (isEmpty()) {
         printf("\n Stack is empty!");
     } else {
         printf("\n Stack elements are:\n");
