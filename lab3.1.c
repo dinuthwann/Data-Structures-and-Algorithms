@@ -14,7 +14,8 @@ void push(char val){
         if(isFull()){
                 printf("\nstack is full");
         }else{
-                stack[top++]= val;
+                top++;
+                stack[top]= val;
         }
 }
 char pop(){
@@ -32,6 +33,19 @@ char peek(){
          }
          return stack[top];
 }
+void display(){
+        if (isEmpty()) {
+                printf("Stack is empty!\n");
+                return;
+        }
+        printf("Stack elements: ");
+        for (int i =0; i <= top; i++){
+                        printf("%c ", stack[i]);
+                        }
+                        printf("\n");
+
+}
+
 
 int main(){
         int choice;
@@ -40,7 +54,8 @@ int main(){
                 printf("1. Push\n");
                 printf("2. Pop \n");
                 printf("3. Peek\n");
-                printf("4. Exit\n");
+                printf("4. Display Stack\n");
+                printf("5. Exit\n");
                 scanf("%d", &choice);
 
                 switch (choice) {
@@ -62,6 +77,9 @@ int main(){
                                 }
                                 break;
                         case 4:
+                                display();
+                                break;
+                        case 5:
                                 printf("Exiting program \n");
                                 return 0;
                         default:
