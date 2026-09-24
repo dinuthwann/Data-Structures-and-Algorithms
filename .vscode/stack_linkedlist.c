@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Stack Node structure එක නිර්මාණය කිරීම
+// Create the Stack Node structure 
 struct Node {
     int data;
     struct Node* next;
 };
 
-// Stack එකේ උඩම අගය (Top) පෙන්වීමට pointer එකක්
+// Pointer to keep track of the top value of the stack 
 struct Node* top = NULL;
 
-// 1. Push Operation (Stack එකට අගයක් ඇතුළත් කිරීම)
+// 1. Push Operation (Add an element to the stack)
 void push(int value) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     if (newNode == NULL) {
@@ -20,38 +20,38 @@ void push(int value) {
     newNode->data = value;
     newNode->next = top;
     top = newNode;
-    printf("%d Stack එකට එකතු විය (Pushed).\n", value);
+    printf("%d added to the Stack (Pushed).\n", value);
 }
 
-// 2. Pop Operation (Stack එකේ උඩම අගය ඉවත් කිරීම)
+// 2. Pop Operation (Remove the top element from the stack)
 void pop() {
     if (top == NULL) {
-        printf("Stack Underflow! Stack එක හිස්.\n");
+        printf("Stack Underflow! Stack is empty.\n");
         return;
     }
     struct Node* temp = top;
-    printf("%d Stack එකෙන් ඉවත් විය (Popped).\n", top->data);
+    printf("%d removed from Stack (Popped).\n", top->data);
     top = top->next;
-    free(temp); // මතකය නිදහස් කිරීම
+    free(temp); // Free up the memory
 }
 
-// 3. Peek Operation (Stack එකේ උඩම අගය ඉවත් නොකර බලාගැනීම)
+// 3. Peek Operation (View the top element without removing it)
 void peek() {
     if (top == NULL) {
-        printf("Stack එක හිස්.\n");
+        printf("Stack is empty.\n");
         return;
     }
-    printf("Stack එකේ උඩම අගය: %d\n", top->data);
+    printf("Top value of the Stack: %d\n", top->data);
 }
 
-// 4. Display Operation (Stack එකේ ඇති සියලුම අගයන් පෙන්වීම)
+// 4. Display Operation (Print all elements in the stack)
 void display() {
     if (top == NULL) {
-        printf("Stack එක හිස්.\n");
+        printf("Stack is empty.\n");
         return;
     }
     struct Node* temp = top;
-    printf("Stack එක: ");
+    printf("Stack: ");
     while (temp != NULL) {
         printf("%d -> ", temp->data);
         temp = temp->next;
@@ -60,7 +60,7 @@ void display() {
 }
 
 int main() {
-    // Stack එක පරීක්ෂා කිරීම
+    // Test the Stack operations 
     push(10);
     push(20);
     push(30);
